@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  lun. 26 oct. 2020 à 15:04
+-- Généré le :  lun. 26 oct. 2020 à 15:10
 -- Version du serveur :  5.7.25
 -- Version de PHP :  7.3.1
 
@@ -19,6 +19,26 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `movie_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `directors`
+--
+
+CREATE TABLE `directors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `nationality` enum('USA','Luxembourg','France','Italy') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `directors`
+--
+
+INSERT INTO `directors` (`id`, `name`, `nationality`) VALUES
+(1, 'David Finch', 'USA'),
+(2, 'George Lucas', 'USA');
 
 -- --------------------------------------------------------
 
@@ -46,6 +66,12 @@ INSERT INTO `movies` (`id`, `title`, `views`, `director_id`) VALUES
 --
 
 --
+-- Index pour la table `directors`
+--
+ALTER TABLE `directors`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `movies`
 --
 ALTER TABLE `movies`
@@ -55,6 +81,12 @@ ALTER TABLE `movies`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `directors`
+--
+ALTER TABLE `directors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `movies`

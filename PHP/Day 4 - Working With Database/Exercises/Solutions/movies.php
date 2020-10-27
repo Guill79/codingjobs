@@ -10,6 +10,16 @@ $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 $sql_query = 'SELECT * 
             FROM movies';
 
+// Check if click on the button (to search)
+if(isset($_POST['submitBtn'])) {
+    // Retrieve the search value
+    $search = $_POST['searchbox'];
+    
+    $sql_query = 'SELECT * 
+            FROM movies
+            WHERE title LIKE "%' . $search . '%"';
+}
+
 // Execute the query
 $results = mysqli_query($conn, $sql_query);
 
@@ -31,6 +41,11 @@ $movies = mysqli_fetch_all($results, MYSQLI_ASSOC);
     <?php require_once 'nav.html'; ?>
 
     <h2>Movies list</h2>
+
+    <form action="" method="post">
+        <input type="text" name="searchbox" placeholder="Search for a movie">
+        <input type="submit" name="submitBtn" value="Search">
+    </form>
 
     <?php foreach ($movies as $movie) : ?>
         <hr>
